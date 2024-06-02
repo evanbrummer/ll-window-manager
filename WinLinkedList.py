@@ -1,7 +1,10 @@
+from tkinter import Rectangle
+
 class Node:
     def __init__(self):
         self.prev = None
         self.next = None
+        self.rectangle = Rectangle()
 
 
 class WinLL:
@@ -17,6 +20,7 @@ class WinLL:
     def add_win(self):
         if self.head is None:
             self.head = Node()
+            return self.head
         else:
             for win in self:
                 pass
