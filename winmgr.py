@@ -10,6 +10,7 @@ def rmb_down(event):
     sizing = True
     rectangle = canvas.create_rectangle(100, 50, 200, 100, fill="blue", tag="rect")
 
+
 def rmb_move(event):
     head: Node = ll.head
 
@@ -21,11 +22,10 @@ def rmb_move(event):
 root = Tk()
 root.title = "winmgr"
 
-canvas = Canvas(master=root, width=1280, height=720)
+canvas = Canvas(master=root, width=480, height=360)
 canvas.pack()
 
-canvas.bind("<Button-3>", rmb_down) # create rectangle, start sizing
-canvas.bind("<B3-Motion>", rmb_move) # resize head node rectangle
-
+canvas.bind("<Button-3>", rmb_down)  # create rectangle, start sizing
+canvas.bind("<B3-Motion>", rmb_move)  # resize head node rectangle
 
 root.mainloop()

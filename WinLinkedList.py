@@ -1,10 +1,8 @@
-from tkinter import Rectangle
-
 class Node:
     def __init__(self):
-        self.prev = None
-        self.next = None
-        self.rectangle = Rectangle()
+        self.prev: Node
+        self.next: Node
+        self.rectangle: int
 
 
 class WinLL:
