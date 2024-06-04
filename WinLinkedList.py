@@ -1,13 +1,18 @@
+from tkinter import Canvas, Event
+
+from Rectangle import *
+
+
 class Node:
-    def __init__(self):
-        self.prev: Node
-        self.next: Node
-        self.rectangle: int
+    def __init__(self, rect):
+        self.prev: Node = None
+        self.next: Node = None
+        self.rect: Rectangle = rect
 
 
 class WinLL:
     def __init__(self):
-        self.head = None
+        self.head: Node = None
 
     def __iter__(self):
         current = self.head
@@ -15,12 +20,12 @@ class WinLL:
             yield current
             current = current.next
 
-    def add_win(self):
+    def add_win(self, new: Node):
         if self.head is None:
-            self.head = Node()
-            return self.head
+            self.head = new
         else:
-            for win in self:
-                pass
-            win.next = Node()
-            return win.next
+            new.next = self.head
+            self.head.prev = new
+            self.head = new
+
+        return self.head
