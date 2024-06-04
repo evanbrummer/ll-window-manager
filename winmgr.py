@@ -1,25 +1,33 @@
 from tkinter import *
 from WinLinkedList import *
+import random
 
 ll = WinLL()
-sizing = False
+
+
+def randomColor():
+    return "#{:06x}".format(random.randint(0, 0xFFFFFF))  # gpt 4-o is the goat
 
 
 def rmb_down(event):
-    global sizing, ll
-    sizing = True
+    global ll
     n = Node(
         Rectangle(event.x, event.y, event.x, event.y)
     )
     nr = n.rect
-    canvas.create_rectangle(nr.x0, nr.y0, nr.y1, nr.y1, fill="blue", tag="rect")
+    nr.rid = canvas.create_rectangle(nr.x0, nr.y0, nr.x1, nr.y1, fill=randomColor(), tag="rect")
     ll.add_win(n)
 
 
 def rmb_move(event):
-    global sizing, ll
+    global ll
     if ll.head is None:
         return
+
+    r = ll.head.rect
+    r.x1 = event.x
+    r.y1 = event.y
+    canvas.coords(r.rid, r.x0, r.y0, r.x1, r.y1)
 
 
 def rmb_up(event):
@@ -42,6 +50,14 @@ def mmb_down(event):
     pass
 
 
+def debug_nodes(event):
+    count = 0
+    for n in ll:
+        count += 1
+
+    print("there are", count, "nodes!")
+
+
 # real stuff
 
 root = Tk()
@@ -59,5 +75,8 @@ canvas.bind("<B1-Motion>", lmb_move)  # if head rect is selected, move it with t
 canvas.bind("<ButtonRelease-1>", lmb_up)  # stop moving with mouse and deselect
 
 canvas.bind("<Button-2>", mmb_down)  # remove the highest intersecting rectangle
+
+
+root.bind("n", debug_nodes)
 
 root.mainloop()

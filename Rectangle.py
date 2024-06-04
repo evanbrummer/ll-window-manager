@@ -1,5 +1,6 @@
 class Rectangle:
     def __init__(self, x0, y0, x1, y1):
+        self.rid: int = None
         self.x0: int = x0
         self.y0: int = y0
         self.x1: int = x1
