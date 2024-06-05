@@ -1,5 +1,3 @@
-from tkinter import Canvas, Event
-
 from Rectangle import *
 
 

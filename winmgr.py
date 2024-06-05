@@ -1,6 +1,6 @@
 from tkinter import *
-from WinLinkedList import *
 import random
+from model.WinLinkedList import *
 
 ll = WinLL()
 intersecting = False
@@ -98,9 +98,11 @@ def mmb_down(event):
             ll.remove(n)
             break
 
+
 def full_remove(n: Node):
     canvas.delete(n.rect.rid)
     ll.remove(n)
+
 
 def debug_nodes(event):
     count = 0
